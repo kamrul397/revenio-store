@@ -1,0 +1,58 @@
+const items = [
+  {
+    id: 1,
+    title: "MacBook Pro M3",
+    category: "Laptop",
+    price: 2200,
+    image: "https://images.unsplash.com/photo-1517336714739-489689fd1ca8",
+    description: "Powerful laptop for developers and creators.",
+    rating: 4.9,
+  },
+  {
+    id: 2,
+    title: "iPhone 16 Pro",
+    category: "Phone",
+    price: 1300,
+    image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9",
+    description: "Latest Apple flagship smartphone.",
+    rating: 4.8,
+  },
+  {
+    id: 3,
+    title: "Sony WH1000XM5",
+    category: "Headphone",
+    price: 399,
+    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e",
+    description: "Industry leading noise cancellation.",
+    rating: 4.7,
+  },
+  {
+    id: 4,
+    title: "Samsung S25 Ultra",
+    category: "Phone",
+    price: 1450,
+    image: "https://images.unsplash.com/photo-1580910051074-3eb694886505",
+    description: "Premium Android flagship.",
+    rating: 4.8,
+  },
+  {
+    id: 5,
+    title: "iPad Pro",
+    category: "Tablet",
+    price: 1200,
+    image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0",
+    description: "Portable creativity machine.",
+    rating: 4.6,
+  },
+  {
+    id: 6,
+    title: "Apple Watch Ultra",
+    category: "Watch",
+    price: 999,
+    image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
+    description: "Smart watch for athletes.",
+    rating: 4.8,
+  },
+];
+
+export default items;
