@@ -1,14 +1,33 @@
-import AddProductForm from "@/components/items/AddProductForm";
-import ProtectedRoute from "@/components/ProtectedRoute";
+"use client";
 
-export default function AddPage() {
-  return (
-    <ProtectedRoute>
-      <main className="mx-auto max-w-3xl px-6 py-20">
-        <h1 className="mb-10 text-center text-5xl font-black">Add Product</h1>
+// Make sure it is next/navigation!
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
-        <AddProductForm />
-      </main>
-    </ProtectedRoute>
-  );
+import { createProduct } from "@/services/productService";
+import { uploadImage } from "@/utils/uploadImage";
+import ProductForm from "@/components/items/ProductForm";
+
+export default function AddProductPage() {
+  const router = useRouter(); // This will work perfectly now!
+
+  const handleAdd = async ({ formData, file }) => {
+    if (!file) return toast.error("Please select an image first.");
+
+    const imageUrl = await uploadImage(file);
+    const productPayload = {
+      title: formData.title,
+      category: formData.category,
+      price: Number(formData.price),
+      description: formData.description,
+      image: imageUrl,
+      rating: 5,
+    };
+
+    await createProduct(productPayload);
+    toast.success("Product Added Successfully!");
+    router.push("/items/manage");
+  };
+
+  return <ProductForm mode="add" initialData={null} onSubmit={handleAdd} />;
 }

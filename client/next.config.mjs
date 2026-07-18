@@ -8,7 +8,19 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "**.com", // 👈 Keep this temporarily to bypass all .com blocks for debugging
+        hostname: "ui-avatars.com",
+      },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+      },
+      {
+        protocol: "https",
+        hostname: "**.mobiledokan.com",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
       },
       {
         protocol: "http",

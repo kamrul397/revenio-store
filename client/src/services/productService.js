@@ -43,3 +43,14 @@ export async function removeProduct(id) {
 
   return res.json();
 }
+export async function updateProduct(id, product) {
+  const res = await fetch(`${API_URL}/products/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(product),
+  });
+
+  return res.json();
+}

@@ -1,0 +1,1 @@
+mongoexport --uri="mongodb+srv://revenioAdmin:NQA3eSnsQlCGp1Go@cluster0.ypjumbw.mongodb.net/revenioDB" --collection=products --out=products_backup.json --jsonArray

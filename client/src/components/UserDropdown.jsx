@@ -2,12 +2,25 @@
 
 import Link from "next/link";
 import { toast } from "react-toastify";
+import {
+  HiOutlineLogout,
+  HiOutlineUser,
+  HiOutlineViewGrid,
+} from "react-icons/hi";
 import useAuth from "@/hooks/useAuth";
 
 export default function UserDropdown() {
   const { user, logoutUser } = useAuth();
 
+  // Helper function to force-close the dropdown when a link is clicked
+  const closeDropdown = () => {
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
+  };
+
   const handleLogout = async () => {
+    closeDropdown(); // Close menu instantly on logout click
     try {
       await logoutUser();
       toast.success("Logout Successful");
@@ -22,62 +35,61 @@ export default function UserDropdown() {
       <div
         tabIndex={0}
         role="button"
-        className="avatar cursor-pointer rounded-full ring-2 ring-slate-100 hover:ring-slate-200 transition p-0.5"
+        className="avatar cursor-pointer rounded-full transition-all duration-300 active:scale-95 block"
       >
-        <div className="w-9 rounded-full">
+        <div className="w-9 h-9 rounded-full relative overflow-hidden ring-2 ring-cyan-500/30 hover:ring-cyan-500 transition-all duration-300 shadow-md shadow-slate-900/5">
           <img
             src={user?.photoURL || "https://i.pravatar.cc/150?img=12"}
             alt="User profile picture"
+            className="object-cover w-full h-full"
           />
         </div>
       </div>
 
       {/* Dropdown Card */}
-      <ul
-        tabIndex={0}
-        className="dropdown-content z-50 mt-3 w-60 rounded-xl bg-white p-2 shadow-xl border border-slate-100 text-slate-600 gap-0.5"
-      >
-        {/* User Info Header */}
-        <li className="px-3.5 py-2.5 flex flex-col gap-0.5 select-none pointer-events-none">
-          <p className="font-semibold text-sm text-slate-900 leading-none">
-            {user?.displayName || "User"}
+      <ul className="dropdown-content z-[60] mt-4 w-64 rounded-2xl bg-white/95 backdrop-blur-md p-2 shadow-[0_10px_40px_-10px_rgba(15,23,42,0.15)] border border-slate-100 gap-1">
+        {/* Profile Header */}
+        <div className="mx-1 mt-1 mb-2 rounded-xl bg-gradient-to-br from-slate-50 to-slate-100/70 p-3 border border-slate-200/40">
+          <p className="font-bold text-slate-800 text-sm tracking-tight truncate">
+            {user?.displayName || "User Profile"}
           </p>
-          <p className="text-xs text-slate-400 font-normal truncate max-w-full">
+          <p className="text-xs text-slate-500 truncate mt-0.5">
             {user?.email}
           </p>
-        </li>
+        </div>
 
-        {/* Minimal Divider */}
-        <hr className="border-slate-100 my-1 mx-2" />
-
-        {/* Navigation Options */}
+        {/* Navigation Action Links */}
         <li>
           <Link
-            href="/items/add"
-            className="flex px-3.5 py-2 text-sm font-medium rounded-lg hover:bg-slate-50 hover:text-slate-900 transition-colors"
+            href="/dashboard"
+            onClick={closeDropdown} // Added click handler here
+            className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:bg-slate-100/80 hover:text-slate-900 active:scale-98 transition-all duration-200"
           >
-            Add Product
+            <HiOutlineViewGrid className="text-lg text-slate-400" />
+            Dashboard
           </Link>
         </li>
 
         <li>
           <Link
-            href="/items/manage"
-            className="flex px-3.5 py-2 text-sm font-medium rounded-lg hover:bg-slate-50 hover:text-slate-900 transition-colors"
+            href="/profile"
+            onClick={closeDropdown} // Added click handler here
+            className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:bg-slate-100/80 hover:text-slate-900 active:scale-98 transition-all duration-200"
           >
-            Manage Products
+            <HiOutlineUser className="text-lg text-slate-400" />
+            Account Settings
           </Link>
         </li>
 
-        {/* Minimal Divider */}
-        <hr className="border-slate-100 my-1 mx-2" />
+        <div className="border-t border-slate-100 my-1 mx-2"></div>
 
-        {/* Logout Trigger */}
+        {/* Logout Action */}
         <li>
           <button
             onClick={handleLogout}
-            className="flex w-full text-left px-3.5 py-2 text-sm font-medium text-rose-600 hover:bg-rose-50/60 rounded-lg transition-colors"
+            className="flex w-full items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold text-red-500 hover:bg-red-50 hover:text-red-600 active:scale-98 transition-all duration-200"
           >
+            <HiOutlineLogout className="text-lg" />
             Logout
           </button>
         </li>

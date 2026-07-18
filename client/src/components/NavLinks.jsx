@@ -1,17 +1,26 @@
 "use client";
 
+import useAuth from "@/hooks/useAuth";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const links = [
-  { title: "Home", href: "/" },
-  { title: "Items", href: "/items" },
-  { title: "About", href: "/about" },
-  { title: "Contact", href: "/contact" },
-];
-
 export default function NavLinks() {
   const pathname = usePathname();
+  const { user } = useAuth();
+
+  const links = [
+    { title: "Home", href: "/" },
+    { title: "Items", href: "/items" },
+    { title: "About", href: "/about" },
+    { title: "Contact", href: "/contact" },
+  ];
+
+  if (user) {
+    links.push({
+      title: "Dashboard",
+      href: "/dashboard",
+    });
+  }
 
   return (
     <>
@@ -22,10 +31,10 @@ export default function NavLinks() {
           <li key={link.href}>
             <Link
               href={link.href}
-              className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-200 focus:bg-transparent ${
+              className={`px-4 py-2 rounded-xl transition-all duration-200 text-base font-semibold ${
                 isActive
-                  ? "text-slate-900 bg-slate-50 font-semibold"
-                  : "text-slate-600 hover:text-slate-900 hover:bg-slate-50/50"
+                  ? "bg-blue-500 text-white shadow-sm border border-blue-100/50"
+                  : "text-slate-600 hover:bg-blue-200 hover:text-black"
               }`}
             >
               {link.title}

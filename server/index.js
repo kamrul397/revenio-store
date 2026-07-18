@@ -57,7 +57,42 @@ async function run() {
 
       res.send(result);
     });
-    // delete a product
+
+    // update product
+    app.put("/products/:id", async (req, res) => {
+      try {
+        const id = req.params.id;
+        const updatedProduct = req.body;
+
+        const filter = {
+          _id: new ObjectId(id),
+        };
+
+        const updatedDoc = {
+          $set: {
+            title: updatedProduct.title,
+            category: updatedProduct.category,
+            price: Number(updatedProduct.price), // 👈 CRITICAL: Force it to be a Number for MongoDB Int32
+            image: updatedProduct.image,
+            description: updatedProduct.description,
+          },
+        };
+
+        const result = await productCollection.updateOne(filter, updatedDoc);
+
+        if (result.matchedCount === 0) {
+          return res
+            .status(404)
+            .send({ error: "Product not found in database" });
+        }
+
+        res.send(result);
+      } catch (error) {
+        res.status(500).send({ error: error.message });
+      }
+    });
+
+    // delete product
     app.delete("/products/:id", async (req, res) => {
       const id = req.params.id;
 
