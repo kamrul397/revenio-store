@@ -1,9 +1,20 @@
-import RegisterForm from "@/components/auth/RegisterForm";
+import LoginForm from "@/components/auth/LoginForm";
+import { Suspense } from "react";
 
-export default function RegisterPage() {
+function Loading() {
   return (
-    <main className="min-h-screen bg-slate-100 flex items-center justify-center p-6">
-      <RegisterForm />
+    <div className="flex items-center justify-center">
+      <span className="loading loading-spinner loading-lg"></span>
+    </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <main className="flex min-h-screen items-center justify-center bg-slate-100 p-6">
+      <Suspense fallback={<Loading />}>
+        <LoginForm></LoginForm>
+      </Suspense>
     </main>
   );
 }

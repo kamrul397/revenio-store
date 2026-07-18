@@ -54,6 +54,7 @@ export default function Newsletter() {
           <button
             type="submit"
             className="group flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/30 active:scale-98 transition duration-200"
+            
           >
             Join TechNova
             <FaPaperPlane className="text-xs text-cyan-200 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
