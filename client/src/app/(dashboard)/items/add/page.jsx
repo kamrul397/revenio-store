@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { createProduct } from "@/services/productService";
 import { uploadImage } from "@/utils/uploadImage";
 import ProductForm from "@/components/items/ProductForm";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 export default function AddProductPage() {
   const router = useRouter(); // This will work perfectly now!
@@ -29,5 +30,9 @@ export default function AddProductPage() {
     router.push("/items/manage");
   };
 
-  return <ProductForm mode="add" initialData={null} onSubmit={handleAdd} />;
+  return (
+    <ProtectedRoute>
+      <ProductForm mode="add" initialData={null} onSubmit={handleAdd} />
+    </ProtectedRoute>
+  );
 }

@@ -12,7 +12,7 @@ export default function NavLinks() {
     { title: "Home", href: "/" },
     { title: "Items", href: "/items" },
     { title: "About", href: "/about" },
-    { title: "Contact", href: "/contact" },
+    // { title: "Contact", href: "/contact" },
   ];
 
   if (user) {

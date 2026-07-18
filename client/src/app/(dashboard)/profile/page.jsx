@@ -1,7 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { FaEnvelope, FaUser, FaCalendarAlt, FaShieldAlt } from "react-icons/fa";
+import {
+  FaEnvelope,
+  FaUser,
+  FaCalendarAlt,
+  FaShieldAlt,
+  FaArrowLeft,
+} from "react-icons/fa";
 
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
@@ -16,9 +22,7 @@ export default function ProfilePage() {
   const handleLogout = async () => {
     try {
       await logoutUser();
-
       toast.success("Logged out successfully");
-
       router.push("/login");
     } catch (error) {
       toast.error(error.message);
@@ -29,13 +33,24 @@ export default function ProfilePage() {
     <ProtectedRoute>
       <main className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 py-16">
         <div className="mx-auto max-w-5xl px-6">
-          {/* Heading */}
-          <div className="mb-10">
-            <h1 className="text-5xl font-black text-slate-900">My Profile</h1>
-
-            <p className="mt-3 text-lg text-slate-500">
-              View your account information and profile details.
-            </p>
+          {/* Header Block featuring the matching back button matrix */}
+          <div className="mb-10 flex items-center gap-4 border-b border-slate-200/60 pb-6">
+            <button
+              type="button"
+              onClick={() => router.back()}
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 hover:text-cyan-600 hover:border-cyan-200 hover:shadow-sm active:scale-95 transition-all duration-200"
+              title="Go Back"
+            >
+              <FaArrowLeft size={14} />
+            </button>
+            <div>
+              <h1 className="text-4xl font-black tracking-tight bg-gradient-to-r from-slate-900 via-slate-800 to-cyan-900 bg-clip-text text-transparent">
+                My Profile
+              </h1>
+              <p className="mt-0.5 text-sm font-medium text-slate-500">
+                View your account information and profile details.
+              </p>
+            </div>
           </div>
 
           <div className="grid gap-8 lg:grid-cols-3">
@@ -89,7 +104,6 @@ export default function ProfilePage() {
 
                   <div>
                     <p className="text-sm text-slate-500">Full Name</p>
-
                     <h3 className="text-lg font-semibold">
                       {user?.displayName || "Not Provided"}
                     </h3>
@@ -103,7 +117,6 @@ export default function ProfilePage() {
 
                   <div>
                     <p className="text-sm text-slate-500">Email Address</p>
-
                     <h3 className="text-lg font-semibold">{user?.email}</h3>
                   </div>
                 </div>
@@ -115,7 +128,6 @@ export default function ProfilePage() {
 
                   <div>
                     <p className="text-sm text-slate-500">Email Verified</p>
-
                     <h3 className="text-lg font-semibold">
                       {user?.emailVerified ? "Verified ✅" : "Not Verified"}
                     </h3>
@@ -129,7 +141,6 @@ export default function ProfilePage() {
 
                   <div>
                     <p className="text-sm text-slate-500">Member Since</p>
-
                     <h3 className="text-lg font-semibold">
                       {user?.metadata?.creationTime
                         ? new Date(
