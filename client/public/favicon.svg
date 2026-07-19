@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Cyan to Blue gradient matching your UI style -->
+    <linearGradient id="techNovaGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" /> <!-- Cyan 500 -->
+      <stop offset="100%" stop-color="#2563eb" /> <!-- Blue 600 -->
+    </linearGradient>
+  </defs>
+  
+  <!-- Smooth rounded backdrop -->
+  <rect width="512" height="512" rx="128" fill="url(#techNovaGradient)"/>
+  
+  <!-- Futuristic "TN" intersecting monogram logo -->
+  <path d="M140 160 H280 V220 H240 V380 H180 V220 H140 Z" fill="#ffffff" />
+  <path d="M290 200 H350 L380 320 V200 H430 V380 H370 L340 260 V380 H290 Z" fill="#ffffff" opacity="0.9" />
+  
+  <!-- Small spark/nova element representing "Nova" -->
+  <circle cx="370" cy="140" r="24" fill="#ffffff" />
+</svg>

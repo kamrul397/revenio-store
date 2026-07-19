@@ -13,6 +13,7 @@ import {
   FaArrowLeft,
 } from "react-icons/fa";
 import { getAllProducts, removeProduct } from "@/services/productService";
+import Swal from "sweetalert2";
 
 export default function ManageTable() {
   const [products, setProducts] = useState([]);
@@ -35,17 +36,32 @@ export default function ManageTable() {
     .reverse();
 
   async function handleDelete(id) {
-    if (!confirm("Are you sure you want to delete this product?")) return;
+    const result = await Swal.fire({
+      title: "Delete Product?",
+      text: "You won't be able to recover this product!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#dc2626",
+      cancelButtonColor: "#6b7280",
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "Cancel",
+      reverseButtons: true,
+    });
+
+    if (!result.isConfirmed) return;
+
     try {
       await removeProduct(id);
-      toast.success("Product Deleted");
+
+      toast.success("Product deleted successfully!");
+
       loadProducts();
     } catch (error) {
-      toast.error("Delete Failed");
       console.error(error);
+
+      toast.error("Failed to delete product.");
     }
   }
-
   return (
     <section className="min-h-screen bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-50 via-slate-100 to-slate-200 py-12">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">

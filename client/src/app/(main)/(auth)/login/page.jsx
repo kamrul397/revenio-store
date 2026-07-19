@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import LoginForm from "../../../../components/auth/LoginForm";
+import GuestRoute from "@/components/routes/GuestRoute";
 
 function Loading() {
   return (
@@ -11,10 +12,12 @@ function Loading() {
 
 export default function LoginPage() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-slate-100 p-6">
-      <Suspense fallback={<Loading />}>
-        <LoginForm></LoginForm>
-      </Suspense>
-    </main>
+    <GuestRoute>
+      <main className="flex min-h-screen items-center justify-center bg-slate-100 p-6">
+        <Suspense fallback={<Loading />}>
+          <LoginForm></LoginForm>
+        </Suspense>
+      </main>
+    </GuestRoute>
   );
 }

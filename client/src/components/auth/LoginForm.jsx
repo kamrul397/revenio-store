@@ -117,7 +117,7 @@ export default function LoginForm() {
       <p className="mt-6 text-center text-gray-600">
         Don't have an account?
         <Link
-          href="/register"
+          href={`/register?redirect=${encodeURIComponent(redirect)}`}
           className="ml-2 font-semibold text-blue-600 hover:underline"
         >
           Register
