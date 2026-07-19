@@ -10,9 +10,9 @@
 !.yarn/releases
 !.yarn/versions
 
+repomix-output.xml
 # testing
 /coverage
-
 # next.js
 /.next/
 /out/
