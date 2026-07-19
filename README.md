@@ -168,7 +168,7 @@ CLIENT_URL=https://revenio-client.vercel.app
 
 ---
 
-## 📸 Screenshots
+<!-- ## 📸 Screenshots
 
 ### Home Page
 
@@ -180,7 +180,7 @@ CLIENT_URL=https://revenio-client.vercel.app
 
 ### Dashboard
 
-![Dashboard](screenshots/dashboard.png)
+![Dashboard](screenshots/dashboard.png) -->
 
 ---
 
