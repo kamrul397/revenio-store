@@ -12,7 +12,6 @@ export default function NavLinks() {
     { title: "Home", href: "/" },
     { title: "Items", href: "/items" },
     { title: "About", href: "/about" },
-    // { title: "Contact", href: "/contact" },
   ];
 
   if (user) {
@@ -22,16 +21,26 @@ export default function NavLinks() {
     });
   }
 
+  // --- FIX: Force closing DaisyUI dropdown menu safely ---
+  const handleLinkClick = () => {
+    // Find any HTML element that currently has active browser focus and blur it
+    const elem = document.activeElement;
+    if (elem instanceof HTMLElement) {
+      elem.blur();
+    }
+  };
+
   return (
     <>
       {links.map((link) => {
         const isActive = pathname === link.href;
 
         return (
-          <li key={link.href}>
+          <li key={link.href} className="w-full md:w-auto">
             <Link
               href={link.href}
-              className={`px-4 py-2 rounded-xl transition-all duration-200 text-base font-semibold ${
+              onClick={handleLinkClick} // <--- Triggers the blur
+              className={`block md:inline-block px-4 py-3 md:py-2 rounded-xl transition-all duration-200 text-lg md:text-sm font-semibold ${
                 isActive
                   ? "bg-blue-500 text-white shadow-sm border border-blue-100/50"
                   : "text-slate-600 hover:bg-blue-200 hover:text-black"
